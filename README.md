@@ -140,12 +140,12 @@ This student network was chosen because:
         ▼
 +---------------------+
 |   Encoder Block 1   |  →→→→→→→→→→→→→→→→→→→→→→→→→→→→→→+
-+---------------------+                              │
++---------------------+                               │
         │                                             ↓
-        ▼                                   +---------------------+
-+---------------------+                    |  Decoder Block 1     |
-|   Encoder Block 2   |     ───── skip ───▶ | (UpSample + Conv)   |
-+---------------------+                    +---------------------+
+        ▼                                    +---------------------+
++---------------------+                     |  Decoder Block 1    |
+|   Encoder Block 2   |    ───── skip ───▶  | (UpSample + Conv)   |
++---------------------+                     +---------------------+
         │                                             ↓
         ▼                                   +---------------------+
 +---------------------+                    |  Decoder Block 2     |
@@ -210,10 +210,10 @@ model = UNet(
 
 | **Strength**     | **Reason**                                               |
 |------------------|----------------------------------------------------------|
-| ✅ Lightweight    | Easily deployable on edge/CPU                            |
-| ✅ Modular        | Flexible depth and width control                         |
-| ✅ Effective      | High SSIM (>0.90) via knowledge distillation             |
-| ✅ Interpretable  | Intuitive encoder-decoder design with skip connections   |
+| Lightweight    | Easily deployable on edge/CPU                            |
+| Modular        | Flexible depth and width control                         |
+| Effective      | High SSIM (>0.90) via knowledge distillation             |
+| Interpretable  | Intuitive encoder-decoder design with skip connections   |
 
 
 
