@@ -144,7 +144,7 @@ This student network was chosen because:
         │                                              ↓
         ▼                                    +---------------------+
 +---------------------+                     |  Decoder Block 1    |
-|   Encoder Block 2   |    ───── skip ───▶  | (UpSample + Conv)   |
+|   Encoder Block 2   |    ───── skip ───▶ | (UpSample + Conv)   |
 +---------------------+                     +---------------------+
         │                                             ↓
         ▼                                   +---------------------+
@@ -279,4 +279,59 @@ Inference supports full-size images and automatically resumes if interrupted.
 
 ---
 
+## Results: SSIM Scores 
+
+### Evaluation Summary
+
+After training the Mini-UNet using L1 + KD + VGG loss, we evaluated the student model on benchmark patches from the DIV2K dataset.
+
+- **Input**: `/data/blurry/benchmark/`
+- **Ground Truth**: `/data/sharp/benchmark/`
+- **Student Output**: `/outputs/student_output/benchmark/`
+- **Notebook**: [`ISKD - RESTORMER.ipynb`](./ISKD%20-%20RESTORMER.ipynb)
+- **Evaluation Script**: Part of the Colab notebook (final SSIM evaluation cell)
+- **Metrics**: SSIM (Structural Similarity Index) calculated on Y-channel (luminance)
+
+---
+
+### SSIM Results (Student Model)
+
+| Metric                | Score   |
+|------------------------|---------|
+| Average SSIM (Blurry)  | ~0.61   |
+| Average SSIM (Student) | **~0.90** |
+
+- **Improvement**: The student model shows a significant SSIM gain compared to the blurry input.
+- High perceptual quality achieved with minimal model size.
+
+---
+
+### Best & Mid-Range Image Samples
+
+The top and mid-level performing images were visually inspected and plotted using Matplotlib in the notebook.
+
+- **Top Images**: SSIM ≥ 0.92
+- **Mid-Range**: SSIM ≈ 0.85–0.89
+- **Poor Scores**: Rare, only when input was severely degraded
+
+<div align="center">
+  <img src="results/highest.png" width="48%">
+  <img src="results/midrange.png" width="48%">
+</div>
+
+---
+
+### Full SSIM Table
+
+A `.csv` file containing SSIM scores for **all benchmark images** is available:
+
+[`results/student_ssim_scores.csv`](./results/student_ssim_scores.csv)
+
+- Columns:
+  - `Image`
+  - `SSIM (Blurry)`
+  - `SSIM (Student)`
+- Useful for analysis, charting, or report submission
+
+---
 
