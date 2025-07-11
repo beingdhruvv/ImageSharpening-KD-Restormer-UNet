@@ -239,3 +239,44 @@ GitHub Link: [Restormer official repo](https://github.com/swz30/Restormer)
 **Student Model File**: [`student_model_unet.py`](./models/student_model_unet.py)  
 
 ---
+
+## How It Was Trained
+
+### Training Summary (What We Did)
+
+| Component           | Details                                                                 |
+|---------------------|-------------------------------------------------------------------------|
+| **Model**           | Mini U-Net (3-level)                                                    |
+| **Teacher**         | Pretrained Restormer (motion deblurring)                               |
+| **Patch Size**      | 512×512                                                                 |
+| **Loss Function**   | L1 Loss + KD Loss (to mimic teacher) + VGG Perceptual Loss (λ=0.1)     |
+| **Epochs**          | 20 (or less based on GPU availability, resumed using checkpoints)       |
+| **Batch Size**      | 8                                                                       |
+| **Training Style**  | Chunked training (2500 images/epoch) for efficiency on Colab            |
+| **Script Used**     | [`training/train_student_kd.py`](./training/train_student_kd.py)        |
+| **Checkpointing**   | Checkpoint saved after each epoch → resumable from last epoch           |
+
+Training was done in Google Colab using free-tier GPU and Drive integration.
+
+---
+
+## How Inference is Done
+
+### Inference Summary (Benchmark Evaluation)
+
+| Step                        | Description                                                                 |
+|-----------------------------|-----------------------------------------------------------------------------|
+| **Model Used**              | Final trained `student_model_v1.pth`                                       |
+| **Input Folder**            | `/data/blurry/benchmark/`                                                  |
+| **Ground Truth Folder**     | `/data/sharp/benchmark/`                                                   |
+| **Output Folder**           | `/outputs/student_output/benchmark/`                                       |
+| **Script Notebook**         | [`ISKD - RESTORMER.ipynb`](./ISKD%20-%20RESTORMER.ipynb)                   |
+| **Metric**                  | SSIM computed using `skimage.metrics.ssim` on Y-channel (cropped borders)  |
+| **Results Saved**           | CSV file: [`results/student_ssim_scores.csv`](./results/student_ssim_scores.csv) |
+| **Visualization**           | Side-by-side images shown (blurry vs output vs sharp) for 3 samples        |
+
+Inference supports full-size images and automatically resumes if interrupted.
+
+---
+
+
