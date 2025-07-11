@@ -140,22 +140,22 @@ This student network was chosen because:
         ▼
 +---------------------+
 |   Encoder Block 1   |  →→→→→→→→→→→→→→→→→→→→→→→→→→→→→→+
-+---------------------+                               │
-        │                                             ↓
++---------------------+                                │
+        │                                              ↓
         ▼                                    +---------------------+
 +---------------------+                     |  Decoder Block 1    |
 |   Encoder Block 2   |    ───── skip ───▶  | (UpSample + Conv)   |
 +---------------------+                     +---------------------+
         │                                             ↓
         ▼                                   +---------------------+
-+---------------------+                    |  Decoder Block 2     |
-|   Bottleneck Block  |     ───── skip ───▶ | (UpSample + Conv)   |
-+---------------------+                    +---------------------+
++---------------------+                     |  Decoder Block 2    |
+|   Bottleneck Block  |     ───── skip ───▶| (UpSample + Conv)    |
++---------------------+                     +---------------------+
         │                                             ↓
         ▼                                   +---------------------+
-+---------------------+                    |   Output Conv 1x1    |
-|  Sharpened Output   | ◀──────────────────+     RGB Output       |
-+---------------------+                    +---------------------+
++---------------------+                     |   Output Conv 1x1   |
+|  Sharpened Output   | ◀───────────────── |      RGB Output      |
++---------------------+                     +---------------------+
 ```
 
 ---
@@ -215,5 +215,27 @@ model = UNet(
 | Effective      | High SSIM (>0.90) via knowledge distillation             |
 | Interpretable  | Intuitive encoder-decoder design with skip connections   |
 
+---
 
+## Teacher vs Student Model Parameters
 
+| **Aspect**         | **Teacher (Restormer)**                                | **Student (Mini U-Net)**                            |
+|--------------------|--------------------------------------------------------|-----------------------------------------------------|
+| **Model Type**     | Restormer (Transformer-based)                          | Mini U-Net (CNN-based)                              |
+| **Pretrained**     | Yes (pretrained on GoPro Motion Deblurring dataset)    | No (trained from scratch with KD)                   |
+| **Parameter Count**| ~26 Million                                            | ~1.1 Million (depth=3)                              |
+| **File Size**      | ~105 MB (pretrained .pth)                              | ~30 MB (trained final .pth)                         |
+| **Architecture**   | Multi-stage, self-attention, feed-forward              | 3-level encoder-decoder with skip connections       |
+| **Training Input** | Full blurry DIV2K images                               | 512×512 patches                                     |
+| **Output**         | Sharp image (same size as input)                       | Sharp image (same size as input)                    |
+| **Inference Speed**| Slow (high compute cost, not real-time on CPU)         | Fast (real-time capable on CPU)                     |
+| **Purpose**        | Acts as ground truth proxy for student training        | Learns to mimic teacher using L1 + KD + VGG loss    |
+
+---
+
+**Teacher Model Checkpoint**: Pretrained Restormer weights  
+GitHub Link: [Restormer official repo](https://github.com/swz30/Restormer)
+
+**Student Model File**: [`student_model_unet.py`](./models/student_model_unet.py)  
+
+---
