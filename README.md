@@ -337,7 +337,7 @@ A `.csv` file containing SSIM scores for **all benchmark images** is available:
 
 ## Team & Credits
 
-**This project, focused on Image Sharpening using Knowledge Distillation, was developed as part of the  Intel® Unnati Industrial Training Program 2025.**.
+**This project, focused on Image Sharpening using Knowledge Distillation, was developed as part of the  Intel® Unnati Industrial Training Program 2025**
 
 **Team Name**: `RestoraTech`
 
@@ -348,3 +348,38 @@ A `.csv` file containing SSIM scores for **all benchmark images** is available:
 
 ---
 
+## Related Work
+
+Alongside this main implementation using the **Restormer teacher**, we also explored a parallel approach using the **SwinIR-M (x4 PSNR)** model as the teacher network for knowledge distillation.
+
+You can explore that version here:  
+🔗 [`ImageSharpening-KD-SwinIR-M-x4-PSNR`](https://github.com/beingdhruvv/ImageSharpening-KD-SwinIR-M-x4-PSNR/tree/main)
+
+> The Restormer-based approach, however, demonstrated **stronger perceptual quality and faster inference**, and is considered the **finalized primary submission** for this challenge.
+
+---
+
+## Conclusion
+
+This project presents a complete, lightweight, and high-quality image sharpening pipeline using **Knowledge Distillation** from a powerful Restormer teacher to a compact Mini-UNet student model. Despite being highly compressed (~1.1M parameters), the student model achieves **SSIM ≥ 0.90**, demonstrating strong perceptual performance and real-time usability.
+
+With modular loss integration (L1, KD, VGG), checkpoint-based resumable training, and full inference/evaluation tools, this repository provides a fully reproducible and scalable framework for real-world sharpening tasks on blurred images.
+
+---
+
+## References
+
+- [Restormer: Efficient Transformer for High-Resolution Image Restoration](https://github.com/swz30/Restormer)
+- [DIV2K Dataset – NTIRE Challenge](https://data.vision.ee.ethz.ch/cvl/DIV2K/)
+- [SwinIR: Image Restoration Using Swin Transformer](https://github.com/JingyunLiang/SwinIR)
+- [PyTorch Official Documentation](https://pytorch.org/)
+- [Intel® Unnati Industrial Training Program](https://www.intel.in/content/www/in/en/corporate/unnati/industrial-training-program.html)
+
+---
+
+## License
+
+This project is released under the [MIT License](./LICENSE).  
+You are free to use, modify, and distribute this for academic and research purposes. Commercial use may require additional permission.
+
+---
