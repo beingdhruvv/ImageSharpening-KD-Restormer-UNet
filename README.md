@@ -335,3 +335,16 @@ A `.csv` file containing SSIM scores for **all benchmark images** is available:
 
 ---
 
+## Team & Credits
+
+**This project, focused on Image Sharpening using Knowledge Distillation, was developed as part of the  Intel® Unnati Industrial Training Program 2025.**.
+
+**Team Name**: `RestoraTech`
+
+| Member           | Role                          | Contribution Summary                                                                 |
+|------------------|-------------------------------|----------------------------------------------------------------------------------------|
+| **Dhruv Suthar** | Team Lead & Primary Developer | Designed and implemented the full U-Net knowledge distillation pipeline with VGG perceptual loss, handled model training, evaluation, visualization, and GitHub structuring. |
+| **Pratham Patel** | Evaluation & Dataset Lead     | Led benchmark evaluation, SSIM analysis, visual output comparisons, and managed external image testing and dataset structuring. |
+
+---
+
