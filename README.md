@@ -132,31 +132,11 @@ This student network was chosen because:
 
 ---
 
-### U-Net Flowchart (3-Level Depth)
+### Student-Model-Training-Process
 
-```
-[Input Image (3xHxW)]
-        │
-        ▼
-+---------------------+
-|   Encoder Block 1   |  →→→→→→→→→→→→→→→→→→→→→→→→→→→→→→+
-+---------------------+                                │
-        │                                              ↓
-        ▼                                    +---------------------+
-+---------------------+                     |  Decoder Block 1    |
-|   Encoder Block 2   |    ───── skip ───▶ | (UpSample + Conv)   |
-+---------------------+                     +---------------------+
-        │                                             ↓
-        ▼                                   +---------------------+
-+---------------------+                     |  Decoder Block 2    |
-|   Bottleneck Block  |     ───── skip ───▶| (UpSample + Conv)    |
-+---------------------+                     +---------------------+
-        │                                             ↓
-        ▼                                   +---------------------+
-+---------------------+                     |   Output Conv 1x1   |
-|  Sharpened Output   | ◀───────────────── |      RGB Output      |
-+---------------------+                     +---------------------+
-```
+The diagram below illustrates the full training flow:
+
+![Student Training Flow](./Student-Model-Training-Process.png)
 
 ---
 
