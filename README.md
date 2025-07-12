@@ -79,7 +79,7 @@ ImageSharpening-KD-Restormer-UNet/
 │   └── README.md
 
 ├── ISKD - RESTORMER.ipynb           # Main project notebook (end-to-end)
-├── LICENSE                          # ⚖MIT License
+├── LICENSE                          # MIT License
 ├── requirements.txt (optional)      # Pip dependencies
 └── README.md                        # Full documentation
 ```
@@ -241,7 +241,7 @@ model = UNet(
 | **Model Type**     | Restormer (Transformer-based)                          | Mini U-Net (CNN-based)                              |
 | **Pretrained**     | Yes (pretrained on GoPro Motion Deblurring dataset)    | No (trained from scratch with KD)                   |
 | **Parameter Count**| ~26 Million                                            | ~1.1 Million (depth=3)                              |
-| **File Size**      | ~105 MB (pretrained .pth)                              | ~30 MB (trained final .pth)                         |
+| **File Size**      | ~105 MB (pretrained .pth)                              | ~30 MB (student_model_v2.pth)                         |
 | **Architecture**   | Multi-stage, self-attention, feed-forward              | 3-level encoder-decoder with skip connections       |
 | **Training Input** | Full blurry DIV2K images                               | 512×512 patches                                     |
 | **Output**         | Sharp image (same size as input)                       | Sharp image (same size as input)                    |
