@@ -17,6 +17,34 @@ This folder contains the **Mini-UNet** architecture used for the student model i
 
 We use a custom U-Net architecture as the student model. It is a lightweight encoder-decoder network with skip connections, modular design, and supports optional features like dropout, batch normalization, and configurable depth.
 
+### U-Net Flowchart (3-Level Depth)
+
+```
+[Input Image (3xHxW)]
+        │
+        ▼
++---------------------+
+|   Encoder Block 1   |  →→→→→→→→→→→→→→→→→→→→→→→→→→→→→→+
++---------------------+                                │
+        │                                              ↓
+        ▼                                    +---------------------+
++---------------------+                     |  Decoder Block 1    |
+|   Encoder Block 2   |    ───── skip ───▶ | (UpSample + Conv)   |
++---------------------+                     +---------------------+
+        │                                             ↓
+        ▼                                   +---------------------+
++---------------------+                     |  Decoder Block 2    |
+|   Bottleneck Block  |     ───── skip ───▶| (UpSample + Conv)    |
++---------------------+                     +---------------------+
+        │                                             ↓
+        ▼                                   +---------------------+
++---------------------+                     |   Output Conv 1x1   |
+|  Sharpened Output   | ◀───────────────── |      RGB Output      |
++---------------------+                     +---------------------+
+```
+
+---
+
 ### Key Characteristics
 
 - **Input**: RGB patches (`3×512×512`)
