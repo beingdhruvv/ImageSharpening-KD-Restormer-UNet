@@ -32,27 +32,64 @@ The student is trained to match the teacher’s performance, while being up to *
 
 ---
 
+## Finalized Repository Structure
+
+```
+ImageSharpening-KD-Restormer-UNet/
+├── models/                          # Student model architecture
+│   ├── student_model_unet.py
+│   └── README.md
+
+├── pretrained_models/               # Pretrained Restormer model (teacher)
+│   ├── motion_deblurring.pth 
+│   ├── restormer_arch.py 
+│   └── README.md
+
+├── losses/                          # Custom loss functions
+│   ├── vgg_loss.py
+│   └── README.md
+
+├── training/                        # Training pipeline
+│   ├── train_student_kd.py
+│   ├── Student-Model-Training-Process.png
+│   └── README.md
+
+├── checkpoints/                     # rained weights and resume checkpoints
+│   ├── student_model_v1.pth   ← (L1 + KD)
+│   ├── student_model_v2.pth   ← (Final: L1 + KD + VGG)
+│   ├── student_checkpoint.pth
+│   └── README.md
+
+├── results/                         # Benchmark evaluation results
+│   ├── student_ssim_scores.csv
+│   ├── highest.png
+│   ├── midrange.png
+│   └── README.md
+
+├── data/                            # [Excluded from repo, see Drive link]
+│   ├── whole_dataset/
+│   ├── blurry/
+│   │   ├── train/train/
+│   │   ├── train/test/
+│   │   └── benchmark/
+│   └── sharp/
+│       ├── train/train/
+│       ├── train/test/
+│       └── benchmark/
+│   └── README.md
+
+├── ISKD - RESTORMER.ipynb           # Main project notebook (end-to-end)
+├── LICENSE                          # ⚖MIT License
+├── requirements.txt (optional)      # Pip dependencies
+└── README.md                        # Full documentation
+```
+---
+
 ### Dataset Used — DIV2K 
 
 We use the **DIV2K dataset** (high-resolution image dataset) as the base for training and evaluation. The dataset is organized into paired blurry–sharp images for both training and benchmarking, with a strict triplet alignment to support knowledge distillation:
 
 ---
-
-### Folder Structure
-```
-data/
-├── whole_dataset/                  # Original DIV2K_train_HR images
-├── blurry/
-│   ├── train/
-│   │   ├── train/                  # 80% of training images (blurry patches)
-│   │   └── test/                   # 20% of training images (blurry patches)
-│   └── benchmark/                  # 10% benchmark blurry images
-├── sharp/
-│   ├── train/
-│   │   ├── train/                  # 80% of training images (sharp patches)
-│   │   └── test/                   # 20% of training images (sharp patches)
-│   └── benchmark/                  # 10% benchmark sharp images
-```
 
 ### Key Details
 - **Patch Size**: 512×512 (non-overlapping, center-cropped if needed)
