@@ -136,7 +136,7 @@ This student network was chosen because:
 
 The diagram below illustrates the full training flow:
 
-![Student Training Flow](./Student-Model-Training-Process.png)
+![Student Training Flow](training/Student-Model-Training-Process.png)
 
 ---
 
