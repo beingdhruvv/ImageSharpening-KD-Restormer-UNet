@@ -32,6 +32,16 @@ The student is trained to match the teacher’s performance, while being up to *
 
 ---
 
+### 🎥 Colab Notebook Walkthrough
+
+A complete walkthrough video of our Google Colab project is available for visual understanding of the full pipeline, code, and results.
+
+📺 [Watch the Explanation Video](https://drive.google.com/drive/folders/1_oO15V_QBIblM69H4y7xnKJvS0N6kmXR?usp=drive_link)
+
+> Covers dataset setup, training, inference, and SSIM evaluation.
+
+---
+
 ## Finalized Repository Structure
 
 ```
