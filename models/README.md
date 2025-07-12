@@ -20,7 +20,7 @@ We use a custom U-Net architecture as the student model. It is a lightweight enc
 ### U-Net Flowchart (3-Level Depth)
 
 ```
-[Input Image (3xHxW)]
+[Input Image]
         │
         ▼
 +---------------------+
