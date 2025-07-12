@@ -116,7 +116,7 @@ Need help loading the data?
 
 Check:  
 [`training/train_student_kd.py`](../training/train_student_kd.py)  
-[`ISKD_RESTORMER.ipynb`](ISKD_RESTORMER.ipynb)
+[`ISKD_RESTORMER.ipynb`](../ISKD_RESTORMER.ipynb)
 
 
 
