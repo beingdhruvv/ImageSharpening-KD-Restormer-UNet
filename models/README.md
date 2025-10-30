@@ -106,8 +106,8 @@ Inspired by the original U-Net design but heavily optimized for knowledge distil
 
 ---
 
-📁 **Path**: [`models/student_model_unet.py`](./student_model_unet.py)
+**Path**: [`models/student_model_unet.py`](./student_model_unet.py)
 
-🧠 Designed and tuned for this project: **Image Sharpening using Knowledge Distillation (Restormer + UNet)**
+Designed and tuned for this project: **Image Sharpening using Knowledge Distillation (Restormer + UNet)**
 
 
